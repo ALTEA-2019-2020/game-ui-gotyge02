@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface PokemonTypeService {
     List<PokemonType> listPokemonsTypes();
+    List<PokemonType> listPokemonsTypes(List<Integer> id);
 }

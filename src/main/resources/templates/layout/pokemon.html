@@ -1,0 +1,26 @@
+<div class="col-md-4">
+    <div class="card shadow-sm mb-3">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{name}}<span class="badge badge-secondary">Id {{id}}</span>
+            </h4>
+        </div>
+        <div class="card-img-top">
+            <img src="{{sprites.front_default}}" alt="Pokemon"/>
+            <img src="{{sprites.back_default}}" alt="Pokemon"/>
+        </div>
+        <div class="card-body">
+            <span class="badge badge-primary">Types:
+                {{#types}}
+                {{.}}
+                {{/types}}
+            </span>
+            <span class="badge badge-primary">HP : {{stats.hp}}</span>
+            <span class="badge badge-primary">Speed : {{stats.speed}}</span>
+            <span class="badge badge-primary">Defense : {{stats.defense}}</span>
+            <span class="badge badge-primary">Attack : {{stats.attack}}</span>
+            {{#level}}
+            <span class="badge badge-primary">level : {{level}}</span>
+            {{/level}}
+        </div>
+    </div>
+</div>

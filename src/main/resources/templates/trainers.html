@@ -1,0 +1,16 @@
+{{> layout/header}}
+<body>
+<div class="container">
+    <h1 class="pt-md-5 pb-md-5">Trainers</h1>
+    <div class="card-deck">
+        {{#trainers}}
+        <div class="col-md-3">
+            <div class="card shadow-sm mb-3">
+                <a class="btn btn-primary" href="trainer/{{trainer.name}}">{{trainer.name}}</a>
+            </div>
+        </div>
+        {{/trainers}}
+    </div>
+</div>
+</body>
+</html>

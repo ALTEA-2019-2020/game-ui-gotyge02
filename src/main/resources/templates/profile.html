@@ -1,0 +1,17 @@
+{{> layout/header}}
+<body>
+{{> layout/profileHeader }}
+<div class="container">
+    {{> layout/detailTrainer }}
+    {{#trainers}}
+    <div class="container">
+        <h1 class="pt-md-5 pb-md-5">{{trainer.name}}</h1>
+        <div class="card-deck">
+            {{#team}}
+            {{> layout/pokemon}}
+            {{/team}}
+        </div>
+    </div>
+    {{/trainers}}
+</div>
+</body>
