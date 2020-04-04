@@ -1,26 +1,32 @@
-<div class="col-md-4">
-    <div class="card shadow-sm mb-3">
+<div class="col-md-2">
+    <div class="card shadow-sm mb-2">
         <div class="card-header">
-            <h4 class="my-0 font-weight-normal">{{name}}<span class="badge badge-secondary">Id {{id}}</span>
+            <div style="text-align: center;">
+            <h4 class="my-0 font-weight-normal">{{name}} <span class="badge badge-secondary">#{{id}}</span>
+                <br><span class="badge badge-primary">Types :
+                    {{#types}}
+                    {{.}}
+                    {{/types}}
+                </span>
             </h4>
+            </div>
         </div>
         <div class="card-img-top">
+            <div style="text-align: center;">
             <img src="{{sprites.front_default}}" alt="Pokemon"/>
             <img src="{{sprites.back_default}}" alt="Pokemon"/>
+            </div>
         </div>
         <div class="card-body">
-            <span class="badge badge-primary">Types:
-                {{#types}}
-                {{.}}
-                {{/types}}
-            </span>
-            <span class="badge badge-primary">HP : {{stats.hp}}</span>
-            <span class="badge badge-primary">Speed : {{stats.speed}}</span>
-            <span class="badge badge-primary">Defense : {{stats.defense}}</span>
-            <span class="badge badge-primary">Attack : {{stats.attack}}</span>
+            <div style="text-align: center;">
+            <span class="badge badge-success">HP : {{stats.hp}}</span><br>
+            <span class="badge badge-primary">Speed : {{stats.speed}}</span><br>
+            <span class="badge badge-warning">Defense : {{stats.defense}}</span><br>
+            <span class="badge badge-danger">Attack : {{stats.attack}}</span><br>
             {{#level}}
-            <span class="badge badge-primary">level : {{level}}</span>
+            <span class="badge" style="background-color:purple;color:white">level : {{level}}</span>
             {{/level}}
+            </div>
         </div>
     </div>
 </div>

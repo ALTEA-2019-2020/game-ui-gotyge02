@@ -6,6 +6,7 @@ import com.miage.altea.game_ui.pokemonTypes.Pokemon;
 import com.miage.altea.game_ui.pokemonTypes.PokemonType;
 import com.miage.altea.game_ui.pokemonTypes.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -29,9 +30,11 @@ public class TrainersServiceImpl implements TrainersService {
     }
 
     public TrainerWithPokemonDto getTrainerWithPokemonDto(String name) {
+        System.out.println(trainerServiceUrl + "/trainers/" + name);
         Trainer trainer = restTemplate.getForObject(trainerServiceUrl + "/trainers/" + name, Trainer.class);
+        System.out.println(trainer.name);
         TrainerWithPokemonDto t = new TrainerWithPokemonDto();
-        t.getTrainer().setName(trainer.getName());
+        t.setTrainer(new Trainer(trainer.name));
         List<PokemonDto> team = new ArrayList<>();
         for(Pokemon p : trainer.getTeam()) {
             PokemonType pokemonTmp = pokemonTypeServiceImpl.getPokemon(p.getPokemonTypeId());
@@ -40,6 +43,25 @@ public class TrainersServiceImpl implements TrainersService {
         }
         t.setTeam(team);
         return t;
+    }
+
+    @Override
+    public List<TrainerWithPokemonDto> getAllTrainersWithPokemonDto() {
+        List<TrainerWithPokemonDto> trainersDto= new ArrayList<>();
+        TrainerWithPokemonDto t;
+        for(Trainer trainer : this.restTemplate.getForObject(trainerServiceUrl + "/trainers/", Trainer[].class)){
+            t = new TrainerWithPokemonDto();
+            t.setTrainer(new Trainer(trainer.name));
+            List<PokemonDto> team = new ArrayList<>();
+            for(Pokemon p : trainer.getTeam()) {
+                PokemonType pokemonTmp = pokemonTypeServiceImpl.getPokemon(p.getPokemonTypeId());
+                PokemonDto pokemonDto = new PokemonDto(pokemonTmp.getName(), p.getLevel(), pokemonTmp.getId(), pokemonTmp.getBaseExperience(), pokemonTmp.getHeight(), pokemonTmp.getSprites(), pokemonTmp.getStats(), pokemonTmp.getWeight(), pokemonTmp.getTypes());
+                team.add(pokemonDto);
+            }
+            t.setTeam(team);
+            trainersDto.add(t);
+        }
+        return trainersDto;
     }
 
     @Override
@@ -53,6 +75,7 @@ public class TrainersServiceImpl implements TrainersService {
     }
 
     @Autowired
+    @Qualifier("trainerApiRestTemplate")
     void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }

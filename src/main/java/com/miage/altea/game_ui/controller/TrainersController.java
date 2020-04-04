@@ -18,10 +18,11 @@ public class TrainersController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/trainers/{name}")
+    @GetMapping(value = "/trainer/{name}")
     public ModelAndView trainer(@PathVariable String name){
         var modelAndView = new ModelAndView("trainer");
-        modelAndView.addObject("trainer", trainersService.getTrainer(name));
+        var trainer=trainersService.getTrainerWithPokemonDto(name);
+        modelAndView.addObject("trainer", trainer);
         return modelAndView;
     }
 

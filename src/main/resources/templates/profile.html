@@ -1,17 +1,25 @@
 {{> layout/header}}
 <body>
-{{> layout/profileHeader }}
-<div class="container">
-    {{> layout/detailTrainer }}
+{{> layout/navbar }}
+<div class="container-fluid">
+    <h1 class="pt-md-5 pb-md-5">Profile of {{myProfile.trainer.name}}</h1>
+    <div class="card-deck">
+        {{#myProfile.team}}
+        {{> layout/pokemon}}
+        {{/myProfile.team}}
+    </div>
+    <hr>
+    <h1>All trainers</h1>
     {{#trainers}}
-    <div class="container">
-        <h1 class="pt-md-5 pb-md-5">{{trainer.name}}</h1>
+    <div class="col-lg-12">
+        <h1>{{trainer.name}}</h1>
         <div class="card-deck">
             {{#team}}
             {{> layout/pokemon}}
             {{/team}}
         </div>
     </div>
+    <hr>
     {{/trainers}}
 </div>
 </body>

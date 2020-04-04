@@ -18,8 +18,10 @@ public class ProfileController {
     public ModelAndView profil(){
         var modelAndView = new ModelAndView("profile");
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        modelAndView.addObject("trainer", trainersService.getTrainer(principal.getUsername()));
-        modelAndView.addObject("trainers", trainersService.getAllTrainers());
+        var trainer=trainersService.getTrainerWithPokemonDto(principal.getUsername());
+        modelAndView.addObject("myProfile", trainer);
+        var trainers=trainersService.getAllTrainersWithPokemonDto();
+        modelAndView.addObject("trainers", trainers);
         return modelAndView;
     }
 

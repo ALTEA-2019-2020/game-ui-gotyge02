@@ -3,8 +3,11 @@ package com.miage.altea.game_ui.config;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 
 @Configuration
 public class RestConfiguration {
@@ -22,15 +25,15 @@ public class RestConfiguration {
     }
 
     @Bean
-    RestTemplate trainerApiRestTemplate(){
-        var restTemplate = new RestTemplate();
-        var basicAuthInterceptor = new BasicAuthenticationInterceptor(username, password);
-        restTemplate.getInterceptors().add(basicAuthInterceptor);
+    RestTemplate trainerApiRestTemplate() {
+        ClientHttpRequestInterceptor clientHttpRequestInterceptor = new BasicAuthenticationInterceptor(username, password);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setInterceptors(Arrays.asList(clientHttpRequestInterceptor));
         return restTemplate;
     }
 
     @Bean
-    RestTemplate restTemplate(){
+    RestTemplate pokemonApiRestTemplate() {
         return new RestTemplate();
     }
 }

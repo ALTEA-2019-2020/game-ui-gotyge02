@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Trainer {
 
-    private String name;
-    private String password;
-    private List<Pokemon> team;
+    public String name;
+    public String password;
+    public List<Pokemon> team;
 
     public String getPassword() {
         return password;
@@ -30,5 +30,11 @@ public class Trainer {
     public Trainer() {}
     public Trainer(String name) {
         this.name = name;
+    }
+    public Trainer(String name,String password) {
+        this.name = name;this.password = password;
+    }
+    public String toString() {
+        return this.name;
     }
 }

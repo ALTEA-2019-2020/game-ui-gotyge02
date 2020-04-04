@@ -10,4 +10,5 @@ public interface TrainersService {
     TrainerWithPokemonDto getTrainerWithPokemonDto(String name);
     Trainer getTrainer(String name);
     Trainer[] getAllTrainers();
+    List<TrainerWithPokemonDto> getAllTrainersWithPokemonDto();
 }

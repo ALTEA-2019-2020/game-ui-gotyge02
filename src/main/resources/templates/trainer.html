@@ -1,33 +1,11 @@
 {{> layout/header}}
 <body>
-<div class="container">
-    <h1 class="pt-md-5 pb-md-5">{{name}}</h1>
+{{> layout/navbar }}
+<div class="container-fluid">
+    <h1 class="pt-md-5 pb-md-5">{{trainer.trainer.name}}</h1>
     <div class="card-deck">
         {{#trainer.team}}
-        <div class="col-md-3">
-            <div class="card shadow-sm mb-3">
-                <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">{{name}} </h4>
-                    <h5>
-                        <span class="badge badge-secondary">Id {{id}}
-                        </span>
-                        <span class="badge badge-secondary">Lvl {{level}}
-                        </span>
-                    </h5>
-                    <div>
-                        <p class="my-0 font-weight-normal"> <b>Type</b> : {{#types}}{{.}}{{/types}}</p>
-                    </div>
-                </div>
-                <img class="card-img-top" src="{{sprites.front_default}}" alt="Pokemon"/>
-                <img class="card-img-top" src="{{sprites.back_default}}" alt="Pokemon"/>
-                <div class="card-body">
-                    <span class="badge badge-primary">HP : {{stats.hp}}</span>
-                    <span class="badge badge-primary">Defense : {{stats.defense}}</span>
-                    <span class="badge badge-primary">Attack : {{stats.attack}}</span>
-                    <span class="badge badge-primary">Speed : {{stats.speed}}</span>
-                </div>
-            </div>
-        </div>
+        {{> layout/pokemon}}
         {{/trainer.team}}
     </div>
 </div>
